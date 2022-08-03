@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_content %}
+<!doctype html>
+<html lang="en">
+
+<body>
+
+    <div class="about-us container-fluid">
+        <div class="container">
+
+            <div class="row natur-row no-margin w-100">
+                <div class="text-part col-md-6">
+                    <h2>About Our Donation</h2>
+                    <p>A donation is a gift made in the form of cash or property to a non-profit
+                        organization, with nothing given in return that is used to help the organization accomplish its
+                        goals and objectives.</p>
+
+
+                </div>
+                <div class="image-part col-md-6">
+                    <div class="about-quick-box row">
+                        <div class="col-md-6">
+                            <div class="about-qcard">
+                                <i class="fas fa-user"></i>
+                                <a href="{% url 'donation:signin' %}">
+                                    <p>Become a Donor</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-qcard ">
+                                <i class="fas fa-donate yell"></i>
+                                <a href="{% url 'donation:signin' %}">
+                                    <p>Give Donation</p>
+                                </a>
+
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+                            <div class="about-qcard ">
+                                <i class="fas fa-donate yell"></i>
+                                <a href="{% url 'donation:signin' %}">
+                                    <p>Giv Donation</p>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-qcard ">
+                                <i class="fas fa-hands-helping blu"></i>
+                                <a href="{% url 'donation:signin' %}">
+                                    <p>Help Someone</p>
+                                </a>
+
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
+<script src="{% static 'plugins/slider/js/owl.carousel.min.js"' %}></script>
+<script src="{% static '' %}"></script>
+
+</html>
+{% endblock %}

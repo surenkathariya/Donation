@@ -1,0 +1,43 @@
+{% load static %}
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <h2>About Us</h2>
+                <p>
+                    A donation is a gift for charity, humanitarian aid, or to benefit a cause. A donation may take
+                    various forms, including money, services, or goods such as clothing, toys, food, or vehicles. A
+                    donation may satisfy medical needs such as blood or organs for transplant.
+                </p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <h2>Useful Links</h2>
+                <ul class="list-unstyled link-list">
+                    <li><a ui-sref="about" href="{% url 'donation:about' %}">About us</a><i
+                            class="fa fa-angle-right"></i></li>
+                    <li><a ui-sref="products" href="{% url 'donation:services' %}">Services</a><i
+                            class="fa fa-angle-right"></i></li>
+                    <li><a ui-sref="gallery" href="{% url 'donation:gallery' %}">Gallery</a><i
+                            class="fa fa-angle-right"></i></li>
+                    <li><a ui-sref="contact" href="{% url 'donation:contact' %}">Contact us</a><i
+                            class="fa fa-angle-right"></i></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12 map-img">
+                <h2>Contact Us</h2>
+                <address class="md-margin-bottom-40">
+                    Tripureshwor - 11<br>
+                    Kathmandu (District) <br>
+                    Bagmati / Nepal <br>
+                    Phone: +977 9815699760<br>
+                    Email: <a href="mailto:skathariya35@gmail.com" class="">skathariya35@gmail.com</a><br>
+
+                </address>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</footer>

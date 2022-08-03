@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_content %}
+
+
+<div class="slider">
+    <!-- Set up your HTML -->
+    <div class="owl-carousel ">
+        <div class="slider-img">
+            <div class="item">
+                <div class="slider-img"><img src="{% static 'images/slider/slider-3.jpg' %}" alt=""></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                            <div class="animated bounceInDown slider-captions">
+                                <h2 class="slider-title">Welcome to Our Donation Management Website</h2>
+                                <p class="slider-text hidden-xs">A little change makes all the difference.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="slider-img"><img src="{% static 'images/slider/slider-1.jpg' %}" alt=""></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                        <div class="slider-captions ">
+                            <h2 class="slider-title">It's time for better help.</h2>
+                            <p class="slider-text hidden-xs"> Humanity starts when you give.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="slider-img"><img src="{% static 'images/slider/slider-2.jpg' %}" alt=""></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                        <div class="slider-captions ">
+                            <h2 class="slider-title">Give To Live Longer.</h2>
+                            <p class="slider-text hidden-xs">Share And Stay Blessed. Give and Get Back Even More. Many
+                                Are In Need Of Your Helping Hand. Just A Little Help Can Make Their Hearts Happier.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/donate.css' %}">
+    <title>Form to Donate</title>
+</head>
+
+<body>
+    <center><br>
+        <h2><u>Fill the form below to Donate</u></h2>
+        <br>
+    </center>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <center>{{form.as_p}}
+            <br>
+            <input type="submit" value="SUBMIT">
+        </center>
+    </form>
+</body>
+
+</html>
