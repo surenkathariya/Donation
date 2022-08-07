@@ -78,30 +78,6 @@ class Donor(models.Model):
     Receive=models.BooleanField(default=False)
     
     def __str__(self):
-        return self.user
+        return self.user.email
 
 
-# class Donation(models.Model):
-#     Status=[
-#         ('Pending','Pending'),
-#         ('Accept','Accept'),
-#         ('Reject','Reject'),
-#     ]
-
-
-
-#     donor = models.ForeignKey(Donor, on_delete=models.CASCADE)
-#     donationname = models.CharField(max_length=100, null=True)
-#     donationpic = models.FileField(upload_to='uploads/%Y/%m/%d/', null=True)
-#     collectionlocation = models.CharField(max_length=300, null=True)
-    
-    
-#     donationdate = models.DateTimeField(auto_now_add=True)
-#     adminremarks = models.CharField(max_length=300, null=True)
-#     updationdate = models.DateField(null=True)
-
-#     def __str__(self):
-#         return self.donationname
-
-
-    
