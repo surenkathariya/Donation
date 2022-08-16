@@ -81,3 +81,12 @@ class Donor(models.Model):
         return self.user.email
 
 
+class Predict(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    height = models.DecimalField(max_digits=10, decimal_places=2)
+    weight = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateTimeField(auto_now_add=True)
+    size = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.user.email

@@ -95,7 +95,7 @@
                 <td>
                     <a href="/donor_update/donor/{{info.id}}"><i class="bi bi-pencil-square text-warning"></i></a>
                     &nbsp;
-                    <a href=""><i class="bi bi-trash-fill text-danger"></i></a>
+                    <a href="/donor_delete/donor/{{info.id}}"><i class="bi bi-trash-fill text-danger"></i></a>
                 </td>
 
             </tr>
@@ -105,7 +105,7 @@
         <span>
             <center><h5><p style="color: red;">Not receive until you fill the form. Please Click on Donate. <i class="bi bi-arrow-down-square-fill"></i></p></h5></center>
         </span>
-        <h1>Click Here <a href="add_donor"><button>Donate</button></a></h1>
+        <h1>Click Here <a href="/add_donor"><button>Donate</button></a></h1>
         {% endif %}
         {% endif %}
     </table>

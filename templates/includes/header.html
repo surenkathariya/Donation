@@ -75,6 +75,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'donation:contact' %}">Contact Us</a>
                         </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'donation:predict' %}">Predict</a>
+                            {% endif %}
+                        </li>
                     </ul>
                 </div>
             </div>

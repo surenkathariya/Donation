@@ -1,4 +1,4 @@
-#!/home/suren/D/suren/venv/bin/python
+#!/media/private/5ae89195-cf93-4b67-a057-1ae2f8e3af96/doc/Donation/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

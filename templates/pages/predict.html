@@ -1,24 +1,59 @@
+{% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predict</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predict</title>
+  <style>
+    body {
+            /* background-image: url("{% static 'images/diabetes.jpg' %}"); */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .main{
+            position: fixed;
+            top: 140px;
+            left: 410px;
+            width: 550px;
+            background-color:#ffffff;
+            border-radius: 10px;
+            align-items: center;
+            padding: 5%;
+        }
+        h1{
+            color: #0086b3;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        input[type=submit]{
+            background-color: #4dc3ff;
+            border: 2px;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+  </style>
 </head>
 <body>
-    <form action="predict" method="POST">
-        <label for="">Age:</label>
-        <input type="text" name="age">
-        <label for="">Height:</label>
-        <input type="text" name="height">
-        <label for="">Weight:</label>
-        <input type="text" name="weight">
-        <br>
-        <input type="Submit" value="Submit">
-    </form>
-    result=
-    
-    
+  <center>
+    <P>Welcome To Predict Page</P>
+    <div class="main">
+      <h1>Please enter the following information</h1>
+      <form action="result">
+        {% csrf_token %}
+
+        {{ form|crispy }}
+        <input type="submit">
+      </form>
+      <!-- Result: {{ result2 }} -->
+    </div>
+
+  </center>
+  
 </body>
 </html>
