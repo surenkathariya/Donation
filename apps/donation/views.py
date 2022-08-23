@@ -69,7 +69,7 @@ def SignUp(request):
             user = form.save()
             login(request, user)
             context['message'] = messages.success(
-                request, "Sign up successfully...!!!", )
+                request, "Sign up Successfully...!!!", )
             return redirect('donation:signin')
     else:
         form = CustomUserForm()
@@ -85,7 +85,7 @@ def SignIn(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             context['message'] = messages.success(
-                request, "Log in successfully...!!!", )
+                request, "Log in Successfully...!!!", )
             if user is not None:
                 login(request, user)
                 return redirect("/")
@@ -105,7 +105,7 @@ def AddDonor(request):
             a.user = request.user
             a.save()
             context['message'] = messages.success(
-                request, "Log in successfully...!!!", )
+                request, "Donate Successfully...!!!", )
             return HttpResponseRedirect("/")
     else:
         form = DonorForm()
@@ -116,7 +116,7 @@ def SignOut(request):
     context = dict()
     logout(request)
     context['message'] = messages.success(
-                request, "Sign out successfully...!!!", )
+                request, "Sign out Successfully...!!!", )
     return HttpResponseRedirect('/')
 
 
@@ -139,7 +139,7 @@ def donor_update(request, id):
         if (form.is_valid()):
             form.save()
             context['message'] = messages.success(
-                request, "Update successfully...!!!", )
+                request, "Update Successfully...!!!", )
             return HttpResponseRedirect('/')
     else:
         donor = Donor.objects.get(id=id)
@@ -166,7 +166,7 @@ def donor_delete(request, id):
         donor = Donor.objects.get(id=id)
         donor.delete()
         context['message'] = messages.success(
-            request, "Donation sucessfully deleted", )
+            request, "Donation Sucessfully deleted", )
     except donor.DoesNotExist:
         context['message'] = messages.error(
             request,
@@ -209,7 +209,7 @@ def predict(request):
             f"{ email } :  {result1} ",
         )
         context['message'] = messages.success(
-                request, "Pridected sucessfully...!!!", )
+                request, "Pridected Sucessfully...!!!", )
      
         if (form.is_valid()):
           

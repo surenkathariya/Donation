@@ -8,20 +8,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/donate.css' %}">
     <title>Form to Donate</title>
+    <style>
+        .form{
+            position: fixed;
+            top: 90px;
+            left: 410px;
+            width: 550px;
+            background-color:#ffffff;
+            border-radius: 10px;
+            align-items: center;
+            padding: 5%;
+        }
+    </style>
 </head>
 
 <body>
-    <center><br>
-        <h2><u>Fill the form below to Donate</u></h2>
-        <br>
-    </center>
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <center>{{form.as_p}}
+    <div class="form">
+        <center><br>
+            <h2><u>Fill the form below to Donate</u></h2>
             <br>
-            <input type="submit" value="SUBMIT">
         </center>
-    </form>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <center>{{form.as_p}}
+                <br>
+                <input type="submit" value="SUBMIT">
+            </center>
+        </form>
+    </div>
 </body>
 
 </html>

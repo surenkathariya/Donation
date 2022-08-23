@@ -12,14 +12,13 @@
   <title>Predict</title>
   <style>
     body {
-            /* background-image: url("{% static 'images/diabetes.jpg' %}"); */
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
         }
         .main{
             position: fixed;
-            top: 140px;
+            top: 90px;
             left: 410px;
             width: 550px;
             background-color:#ffffff;
@@ -46,7 +45,8 @@
   <center>
    
     <div class="main">
-      <h1>Enter the measurable value</h1>
+      <h1>Enter the measurable value</h1> <br>
+      <h4>Height in Inch & Weight in Kg</h4><br>
       <form method="POST">
         {% csrf_token %}
 
