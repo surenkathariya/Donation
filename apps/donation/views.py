@@ -9,7 +9,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from apps.donation.models import Donor
+from apps.donation.models import CustomUser, Donor, Predict
 
 # Data manipulation
 import numpy as np  # linear algebra
@@ -69,7 +69,7 @@ def SignUp(request):
             user = form.save()
             login(request, user)
             context['message'] = messages.success(
-                request, "Sign up sucessfully...!!!", )
+                request, "Sign up successfully...!!!", )
             return redirect('donation:signin')
     else:
         form = CustomUserForm()
@@ -85,7 +85,7 @@ def SignIn(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             context['message'] = messages.success(
-                request, "Sign in sucessfully...!!!", )
+                request, "Log in successfully...!!!", )
             if user is not None:
                 login(request, user)
                 return redirect("/")
@@ -105,7 +105,7 @@ def AddDonor(request):
             a.user = request.user
             a.save()
             context['message'] = messages.success(
-                request, "Log in sucessfully...!!!", )
+                request, "Log in successfully...!!!", )
             return HttpResponseRedirect("/")
     else:
         form = DonorForm()
@@ -113,7 +113,10 @@ def AddDonor(request):
 
 
 def SignOut(request):
+    context = dict()
     logout(request)
+    context['message'] = messages.success(
+                request, "Sign out successfully...!!!", )
     return HttpResponseRedirect('/')
 
 
@@ -136,7 +139,7 @@ def donor_update(request, id):
         if (form.is_valid()):
             form.save()
             context['message'] = messages.success(
-                request, "Update sucessfully...!!!", )
+                request, "Update successfully...!!!", )
             return HttpResponseRedirect('/')
     else:
         donor = Donor.objects.get(id=id)
@@ -150,6 +153,9 @@ def donor_update(request, id):
 
 
 def Logout(request):
+    context = dict()
+    context['message'] = messages.success(
+                request, "Log out successfully...!!!", )
     logout(request)
     return redirect('/')
 
@@ -169,47 +175,113 @@ def donor_delete(request, id):
 
 
 def predict(request):
-    form = PredictForm()
+    context = dict()
+    if request.user.is_authenticated:
+        email = request.user.email
+
+    if (request.method == "POST"):
+        form = PredictForm(request.POST)
+        Tshirt = pd.read_csv("Tshirt_Sizing_Dataset.csv")
+
+        val1 = float(request.POST['height'])
+        val2 = float(request.POST['weight'])
+
+        X = Tshirt.drop("T Shirt Size", axis=1)
+        y = Tshirt["T Shirt Size"]
+
+        labelencoder_y = LabelEncoder()
+        y = labelencoder_y.fit_transform(y)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+
+        classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
+        classifier.fit(X_train, y_train)
+        size = classifier.predict([[val1, val2]])
+        print(f"size {size}")
+        result1 = ""
+        if size == [0]:
+            result1 = "Large Size"
+        else:
+            result1 = "Small Size"
+        print(type(size))
+
+        messages.success(
+            request,
+            f"{ email } :  {result1} ",
+        )
+        context['message'] = messages.success(
+                request, "Pridected sucessfully...!!!", )
+     
+        if (form.is_valid()):
+          
+            user = request.user
+            ins = Predict(user = user, height=val1, weight=val2, size= result1, )
+            ins.save()
+            
+            return HttpResponseRedirect("/")
+    else:
+        form = PredictForm()
+
     context = {
         'form': form
     }
     return render(request, 'pages/predict.html', context)
 
 
-def result(request):
-    if request.user.is_authenticated:
-        email = request.user.email
-    # loading dataset
-    Tshirt = pd.read_csv("Tshirt_Sizing_Dataset.csv")
+# def result(request):
+#     if request.user.is_authenticated:
+#         email = request.user.email
+#     # loading dataset
+#     Tshirt = pd.read_csv("Tshirt_Sizing_Dataset.csv")
 
-    val1 = float(request.GET['height'])
-    val2 = float(request.GET['weight'])
+#     val1 = float(request.GET['height'])
+#     val2 = float(request.GET['weight'])
 
-    X = Tshirt.drop("T Shirt Size", axis=1)
-    y = Tshirt["T Shirt Size"]
+#     X = Tshirt.drop("T Shirt Size", axis=1)
+#     y = Tshirt["T Shirt Size"]
 
-    labelencoder_y = LabelEncoder()
-    y = labelencoder_y.fit_transform(y)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+#     labelencoder_y = LabelEncoder()
+#     y = labelencoder_y.fit_transform(y)
+#     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
 
-    classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
-    classifier.fit(X_train, y_train)
+#     classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
+#     classifier.fit(X_train, y_train)
 
-    val1 = float(request.GET['height'])
-    val2 = float(request.GET['weight'])
+#     val1 = float(request.GET['height'])
+#     val2 = float(request.GET['weight'])
 
-    size = classifier.predict([[val1, val2]])
-    print(f"size {size}")
-    result1 = ""
-    if size == [0]:
-        result1 = "Large Size"
-    else:
-        result1 = "Small Size"
-    print(type(size))
+#     size = classifier.predict([[val1, val2]])
+#     print(f"size {size}")
+#     result1 = ""
+#     if size == [0]:
+#         result1 = "Large Size"
+#     else:
+#         result1 = "Small Size"
+#     print(type(size))
 
-    messages.success(
-        request,
-        f"{ email } :  {result1} ",
-    )
+#     messages.success(
+#         request,
+#         f"{ email } :  {result1} ",
+#     )
 
-    return render(request, "pages/home.html")
+#     return render(request, "pages/home.html")
+
+
+
+# @login_required(login_url='/signup/')
+# def result(request):
+#     context = dict()
+#     if (request.method == "POST"):
+#         form = PredictForm(request.POST)
+#         if (form.is_valid()):
+#             a = form.save(commit=False)
+#             a.user = request.user
+#             a.save()
+#             messages.success(
+#                 request, "Large Size", )
+#             return HttpResponseRedirect("/")
+#     else:
+#         form = PredictForm()
+#         messages.success(
+#                 request, "Not Save", )
+#         return HttpResponseRedirect("/")
+#     return render(request, "pages/home.html")

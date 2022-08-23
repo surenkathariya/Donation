@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.donation.views import About, AddDonor, Contact, Gallery, Logout, Services, SignUp, donor_delete, donor_update, home, SignIn, SignOut, predict, welcome, result
+from apps.donation.views import About, AddDonor, Contact, Gallery, Logout, Services, SignUp, donor_delete, donor_update, home, SignIn, SignOut, predict, welcome
 
 app_name = 'donation'
 
@@ -24,7 +24,7 @@ urlpatterns = [
     path('logout', Logout, name='logout'),
     path('logout', Logout, name='logout'),
     path('predict/',predict,name="predict"),
-    path('predict/result/', result, name='result'),
+    # path('predict/result/', result, name='result'),
 
 ]
 

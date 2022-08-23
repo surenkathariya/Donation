@@ -12,19 +12,19 @@ from django.contrib import messages
 from apps.donation.models import Donor
 
 # Data manipulation
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import numpy as np  # linear algebra
+import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import seaborn as sns
 
 
 # Data Visualization
-import matplotlib.pyplot as plt 
-from mpl_toolkits import mplot3d 
+import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 import matplotlib.ticker as mticker
 
 # Data Classification
-from sklearn.naive_bayes import MultinomialNB 
-from sklearn.model_selection import train_test_split  
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, Normalizer
 from sklearn.metrics import confusion_matrix, classification_report
 
@@ -69,7 +69,7 @@ def SignUp(request):
             user = form.save()
             login(request, user)
             context['message'] = messages.success(
-            request, "Sign up sucessfully...!!!", )
+                request, "Sign up sucessfully...!!!", )
             return redirect('donation:signin')
     else:
         form = CustomUserForm()
@@ -85,7 +85,7 @@ def SignIn(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             context['message'] = messages.success(
-            request, "Sign in sucessfully...!!!", )
+                request, "Sign in sucessfully...!!!", )
             if user is not None:
                 login(request, user)
                 return redirect("/")
@@ -105,7 +105,7 @@ def AddDonor(request):
             a.user = request.user
             a.save()
             context['message'] = messages.success(
-            request, "Log in sucessfully...!!!", )
+                request, "Log in sucessfully...!!!", )
             return HttpResponseRedirect("/")
     else:
         form = DonorForm()
@@ -136,7 +136,7 @@ def donor_update(request, id):
         if (form.is_valid()):
             form.save()
             context['message'] = messages.success(
-            request, "Update sucessfully...!!!", )
+                request, "Update sucessfully...!!!", )
             return HttpResponseRedirect('/')
     else:
         donor = Donor.objects.get(id=id)
@@ -153,13 +153,14 @@ def Logout(request):
     logout(request)
     return redirect('/')
 
-def donor_delete(request, pk):
+
+def donor_delete(request, id):
     context = dict()
     try:
-        donor = donor.objects.get(id=pk)
+        donor = Donor.objects.get(id=id)
         donor.delete()
         context['message'] = messages.success(
-            request, "Item sucessfully deleted", )
+            request, "Donation sucessfully deleted", )
     except donor.DoesNotExist:
         context['message'] = messages.error(
             request,
@@ -167,47 +168,48 @@ def donor_delete(request, pk):
     return redirect("/")
 
 
-
 def predict(request):
     form = PredictForm()
     context = {
-        'form':form
+        'form': form
     }
-    return render(request,'pages/predict.html',context)
+    return render(request, 'pages/predict.html', context)
 
 
 def result(request):
-    #loading dataset
+    if request.user.is_authenticated:
+        email = request.user.email
+    # loading dataset
     Tshirt = pd.read_csv("Tshirt_Sizing_Dataset.csv")
 
     val1 = float(request.GET['height'])
     val2 = float(request.GET['weight'])
 
-    X = Tshirt.drop("T Shirt Size",axis=1)
-    y= Tshirt["T Shirt Size"]
- 
-    
+    X = Tshirt.drop("T Shirt Size", axis=1)
+    y = Tshirt["T Shirt Size"]
+
     labelencoder_y = LabelEncoder()
     y = labelencoder_y.fit_transform(y)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
-    
-  
-    classifier = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)
+
+    classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
     classifier.fit(X_train, y_train)
-    
+
     val1 = float(request.GET['height'])
     val2 = float(request.GET['weight'])
-    
-    
-   
 
-    size = classifier.predict([[val1,val2]])
-    print (f"size {size}")
-    result1 =""
+    size = classifier.predict([[val1, val2]])
+    print(f"size {size}")
+    result1 = ""
     if size == [0]:
-        result1="Large Size"
+        result1 = "Large Size"
     else:
-        result1= "small Size"
+        result1 = "Small Size"
     print(type(size))
 
-    return render(request,"pages/predict.html",{'result2':result1})
+    messages.success(
+        request,
+        f"{ email } :  {result1} ",
+    )
+
+    return render(request, "pages/home.html")

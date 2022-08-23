@@ -6,12 +6,12 @@
                 <div class="col-lg-6 d-none d-lg-block">
                     <ul class="ulleft">
                         <li>
-                            <a href=""><i class="far fa-envelope"></i>
+                            <a href="https://mail.google.com/"><i class="far fa-envelope"></i>
                             skathariya35@gmail.com</a>
                             <span>|</span>
                         </li>
                         <li>
-                            <i class="fas fa-phone-volume"></i>
+                            <a href="tel:9860956889" onclick="ga('send', 'event', { eventCategory: 'Contact', eventAction: 'Call', eventLabel: 'Mobile Button'});"><p class="call-button">Click to Call</p><i class="fas fa-phone-volume"></i></a>
                             +977 9815699760 / 9865688354
                         </li>
                     </ul>
@@ -24,17 +24,17 @@
                             <a href="https://www.facebook.com/"> <i class="fab fa-facebook-square"></i> </a>
                         </li>
                         <li>
-                            <i class="fab fa-twitter-square"></i>
+                            <a href="https://twitter.com/home"><i class="fab fa-twitter-square"></i></a>
                         </li>
                         <li>
-                            <i class="fab fa-instagram"></i>
+                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-lg-3 d-none d-md-block col-md-6 btn-bhed">
                     {% if user.is_authenticated %}
-                    <button class="btn btn-sm btn-success"><a href="{% url 'donation:logout' %}">{{user.email}}Logout</a></button>
-                    <button class="btn btn-sm btn-success"><a href="{% url 'donation:welcome' %}">Donate</a></button>
+                    <button class="btn btn-sm btn-success"><a href="{% url 'donation:logout' %}">{{user.email}}Logout</a></button><br>
+                    <div><button class="btn btn-sm btn-success"><a href="{% url 'donation:welcome' %}">Donate</a></button></div>
                     {% else %}
                     <button class="btn btn-sm btn-success"><a href="{% url 'donation:signin' %}">Login</a></button>
                     {% endif %}
