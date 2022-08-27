@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <style>
+        #popup {
+            display: none;
+            position: absolute;
+            margin: 0 auto;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            opacity: 80%;
+        }
+
+        #close {
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- POP-UP QR code -->
+
+    <div id="popup">
+        <button id="close"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+        <img src="{% static 'images/qr_code/QR-Code.jpeg' %}" alt="popup">
+
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script>function PopUp() {
+            $('#popup').fadeIn(500);
+        }
+
+        setTimeout(function () {
+            PopUp();
+        }, 1000); // 1000 to load it after 1 second from page load
+
+        $('#close').click(function () {
+            $('#popup').fadeOut(300);
+        });</script>
+</body>
+</html>
+{% endblock %}

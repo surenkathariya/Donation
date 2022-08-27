@@ -60,6 +60,9 @@ def Gallery(request):
 def Contact(request):
     return render(request, 'pages/contact_us.html')
 
+def QRCode(request):
+    return render(request, 'pages/qr_code.html')
+
 
 def SignUp(request):
     if (request.method == "POST"):
@@ -225,63 +228,3 @@ def predict(request):
         'form': form
     }
     return render(request, 'pages/predict.html', context)
-
-
-# def result(request):
-#     if request.user.is_authenticated:
-#         email = request.user.email
-#     # loading dataset
-#     Tshirt = pd.read_csv("Tshirt_Sizing_Dataset.csv")
-
-#     val1 = float(request.GET['height'])
-#     val2 = float(request.GET['weight'])
-
-#     X = Tshirt.drop("T Shirt Size", axis=1)
-#     y = Tshirt["T Shirt Size"]
-
-#     labelencoder_y = LabelEncoder()
-#     y = labelencoder_y.fit_transform(y)
-#     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
-
-#     classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
-#     classifier.fit(X_train, y_train)
-
-#     val1 = float(request.GET['height'])
-#     val2 = float(request.GET['weight'])
-
-#     size = classifier.predict([[val1, val2]])
-#     print(f"size {size}")
-#     result1 = ""
-#     if size == [0]:
-#         result1 = "Large Size"
-#     else:
-#         result1 = "Small Size"
-#     print(type(size))
-
-#     messages.success(
-#         request,
-#         f"{ email } :  {result1} ",
-#     )
-
-#     return render(request, "pages/home.html")
-
-
-
-# @login_required(login_url='/signup/')
-# def result(request):
-#     context = dict()
-#     if (request.method == "POST"):
-#         form = PredictForm(request.POST)
-#         if (form.is_valid()):
-#             a = form.save(commit=False)
-#             a.user = request.user
-#             a.save()
-#             messages.success(
-#                 request, "Large Size", )
-#             return HttpResponseRedirect("/")
-#     else:
-#         form = PredictForm()
-#         messages.success(
-#                 request, "Not Save", )
-#         return HttpResponseRedirect("/")
-#     return render(request, "pages/home.html")

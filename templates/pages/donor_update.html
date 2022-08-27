@@ -11,16 +11,17 @@
 
     <title>Update</title>
     <style>
-        .form{
+        .form {
             position: fixed;
             top: 90px;
             left: 410px;
             width: 550px;
-            background-color:#ffffff;
+            background-color: #ffffff;
             border-radius: 10px;
             align-items: center;
             padding: 5%;
         }
+
     </style>
 </head>
 
@@ -28,16 +29,22 @@
     <div class="form">
         <center>
             <h2><u>Update Form</u></h2>
-            <form action="" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{form.as_p}}
-                <br>
-                <input type="submit" value="Update">
-               
+            <fieldset>
+                <legend>Update Information</legend>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <br>
+            </fieldset>
+            <input type="submit" value="UPDATE">
+
             </form>
+
         </center>
     </div>
-    
+
+
+
 </body>
 
 </html>

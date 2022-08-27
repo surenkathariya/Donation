@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,32 +10,36 @@
     <link rel="stylesheet" href="{% static 'css/donate.css' %}">
     <title>Form to Donate</title>
     <style>
-        .form{
+        .form {
             position: fixed;
-            top: 90px;
+            top: 70px;
             left: 410px;
-            width: 550px;
-            background-color:#ffffff;
+            width: 500px;
+            background-color: #ffffff;
             border-radius: 10px;
             align-items: center;
             padding: 5%;
         }
+
     </style>
 </head>
 
 <body>
     <div class="form">
         <center><br>
-            <h2><u>Fill the form below to Donate</u></h2>
+            <h2><u>Register for Donor</u></h2>
             <br>
-        </center>
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <center>{{form.as_p}}
+        <fieldset>
+            <legend>Register Information</legend>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
                 <br>
-                <input type="submit" value="SUBMIT">
-            </center>
+                
+        </fieldset><br>
+        <input type="submit" value="SUBMIT"><br>
         </form>
+    </center>
     </div>
 </body>
 

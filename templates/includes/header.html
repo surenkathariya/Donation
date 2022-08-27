@@ -36,7 +36,7 @@
                     <button class="btn btn-sm btn-success"><a href="{% url 'donation:logout' %}">{{user.email}}Logout</a></button><br>
                     <div><button class="btn btn-sm btn-success"><a href="{% url 'donation:welcome' %}">Donate</a></button></div>
                     {% else %}
-                    <button class="btn btn-sm btn-success"><a href="{% url 'donation:signin' %}">Login</a></button>
+                    <div><button class="btn btn-sm btn-success"><a href="{% url 'donation:signin' %}">Login</a></button></div>
                     {% endif %}
 
                 </div>
@@ -48,9 +48,9 @@
             <div class="row nav-row">
                 <div class="col-lg-3 col-md-12 logo">
                     <a href="index.html">
-                        <img src="{% static 'images/logo/donation.png' %}" alt="" >
-                        <a data-toggle="collapse" data-target="#menu" href="#menu"><i
-                                class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
+                        <img src="{% static 'images/logo/donation.png' %}" alt="" width="200px" height="95px">
+                        <!-- <a data-toggle="collapse" data-target="#menu" href="#menu"><i>
+                                class="fas d-block d-lg-none  small-menu fa-bars"></i></a> -->
                     </a>
 
                 </div>
@@ -74,6 +74,9 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'donation:contact' %}">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'donation:qr_code' %}">QR Code</a>
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">

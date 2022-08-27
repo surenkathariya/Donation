@@ -8,33 +8,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
     <title>Register</title>
+    <style>
+        .form {
+            position: fixed;
+            top: 90px;
+            left: 410px;
+            width: 550px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            align-items: center;
+            padding: 5%;
+        }
+
+    </style>
 </head>
 
 <body>
-    <center class="b">
-        <h2><u>Please fill the form below to register</u></h2><br>
-        <form action="" method="POST">
-            {% csrf_token %}
-            <div class="form-group mb-3">							
-                {{ form.email.label }}:{{ form.email }}
-            </div>
-            <div class="form-group mb-3">
-								
-                {{ form.password1.label }}:{{ form.password1 }}
-            </div>
-            <div class="form-group mb-3">
-								
-                {{ form.password2.label }}:{{ form.password2 }}
-            </div>
-            <div class="form-group mb-3">
-								
-                {{form.errors}}
-            </div>
-            <br>
-            <input id="register" type="submit" value="Register">
-        </form>
-    </center>
-    
+    <div class="form">
+        <center>
+            <h2><u>Register Form</u></h2><br>
+            <fieldset>
+                <legend>Register Here</legend>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group mb-3">							
+                    {{ form.email.label }}:{{ form.email }}
+                </div>
+                <div class="form-group mb-3">
+                                    
+                    {{ form.password1.label }}:{{ form.password1 }}
+                </div>
+                <div class="form-group mb-3">
+                                    
+                    {{ form.password2.label }}:{{ form.password2 }}
+                </div>
+                <div class="form-group mb-3">
+                                    
+                    {{form.errors}}
+                </div>
+                <br></fieldset>
+                <input id="register" type="submit" value="Register">
+            </form>
+        </center>
+        
+    </div>
 </body>
 
 </html>

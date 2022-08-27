@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.donation.views import About, AddDonor, Contact, Gallery, Logout, Services, SignUp, donor_delete, donor_update, home, SignIn, SignOut, predict, welcome
+from apps.donation.views import About, AddDonor, Contact, Gallery, Logout, QRCode, Services, SignUp, donor_delete, donor_update, home, SignIn, SignOut, predict, welcome
 
 app_name = 'donation'
 
@@ -11,6 +11,7 @@ urlpatterns = [
     path('services', Services, name ='services'),
     path('gallery', Gallery, name ='gallery'),
     path('contact', Contact, name ='contact'),
+    path('qr_code', QRCode, name ='qr_code'),
 
 
     path('signup', SignUp, name='signup'),
